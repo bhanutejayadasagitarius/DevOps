@@ -1,0 +1,24 @@
+yum update
+yum install git
+git --version
+yum groupinstall "Development Tools"
+yum install gettext-devel openssl-devel perl-CPAN perl-devel zlib-devel
+yum install wget
+wget https://github.com/git/git/archive/v2.22.0.tar.gz -O git.tar.gz
+tar -zxf git.tar.gz
+cd git-2.22.0/
+make configure
+./configure --prefix=/usr/local
+make install
+git --version
+
+- - - - - - - -  Setting up Repo - -  - - - - - - - - - - - - - - - - - - - - - - - - - - 
+mkdir noor_repo
+cd noor_repo/
+git init
+vi Readme
+git status -s
+git add .
+git status -s
+git commit -m 'Initial commit'
+git log
