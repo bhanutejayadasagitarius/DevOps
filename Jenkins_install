@@ -1,0 +1,24 @@
+# once u login to ubuntu EC2, switch to super user mode. 
+sudo su -
+
+# Update the OS  
+apt update
+
+# Install Java 
+apt install openjdk-8-jdk
+
+# Import the GPG keys of the Jenkins repository 
+wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+
+#add the Jenkins repository
+sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+
+# Update system and install 
+apt install jenkins
+systemctl status jenkins
+
+# OS level port forwording from port 8080 to port 80 
+iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
+
+When you hit your EC2 public IP on your broweser, you should be able to see sign-in page 
+Lets discuss in detail in our demo class. 
